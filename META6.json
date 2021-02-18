@@ -1,0 +1,30 @@
+{
+  "auth": "github:pdf-raku",
+  "authors": [
+    "David Warring"
+  ],
+  "build-depends": [
+    "LibraryMake"
+  ],
+  "depends": [
+    "HarfBuzz::Shaper:ver<0.0.4+>",
+    "Cairo:ver<0.2.7+>"
+  ],
+  "description": "binds to the HarfBuzz font shaping library",
+  "license": "Artistic-2.0",
+  "name": "HarfBuzz:::Shaper::Cairo",
+  "perl": "6.d",
+  "provides": {
+    "HarfBuzz::Shaper::Cairo": "lib/HarfBuzz/Shaper/Cairo.rakumod"
+  },
+  "raku": "6",
+  "resources": [
+  ],
+  "source-url": "git://github.com/harfbuzz-raku/HarfBuzz-Shaper-raku.git",
+  "tags": [
+    "font"
+  ],
+  "test-depends": [
+  ],
+  "version": "0.0.4"
+}
