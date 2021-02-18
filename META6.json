@@ -8,6 +8,7 @@
   ],
   "depends": [
     "HarfBuzz::Shaper:ver<0.0.4+>",
+    "HarfBuzz::Font::FreeType",
     "Cairo:ver<0.2.7+>"
   ],
   "description": "binds to the HarfBuzz font shaping library",
@@ -20,7 +21,7 @@
   "raku": "6",
   "resources": [
   ],
-  "source-url": "git://github.com/harfbuzz-raku/HarfBuzz-Shaper-raku.git",
+  "source-url": "git://github.com/harfbuzz-raku/HarfBuzz-Shaper-Cairo-raku.git",
   "tags": [
     "font"
   ],
