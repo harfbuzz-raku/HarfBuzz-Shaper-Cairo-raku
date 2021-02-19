@@ -23,9 +23,11 @@
   ],
   "source-url": "git://github.com/harfbuzz-raku/HarfBuzz-Shaper-Cairo-raku.git",
   "tags": [
-    "font"
+    "font",
+    "harfbuzz",
+    "cairo"
   ],
   "test-depends": [
   ],
-  "version": "0.0.4"
+  "version": "0.0.1"
 }
