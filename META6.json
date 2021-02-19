@@ -7,13 +7,13 @@
     "LibraryMake"
   ],
   "depends": [
-    "HarfBuzz::Shaper:ver<0.0.4+>",
+    "HarfBuzz::Shaper:ver<0.0.5+>",
     "HarfBuzz::Font::FreeType",
     "Cairo:ver<0.2.7+>"
   ],
-  "description": "binds to the HarfBuzz font shaping library",
+  "description": "Cairo integeration for the HarfBuzz font shaping library",
   "license": "Artistic-2.0",
-  "name": "HarfBuzz:::Shaper::Cairo",
+  "name": "HarfBuzz::Shaper::Cairo",
   "perl": "6.d",
   "provides": {
     "HarfBuzz::Shaper::Cairo": "lib/HarfBuzz/Shaper/Cairo.rakumod"

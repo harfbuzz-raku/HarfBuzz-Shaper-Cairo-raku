@@ -4,9 +4,43 @@ use HarfBuzz::Shaper;
 unit class HarfBuzz::Shaper::Cairo
     is HarfBuzz::Shaper;
 
+=begin pod
+
+=head2 Synopsis
+
+    use HarfBuzz::Shaper::Cairo :&cairo-glyphs;
+    use HarfBuzz::Shaper;
+    use Cairo;
+    my Cairo::Glyphs $glyphs;
+    my $file = 't/fonts/NimbusRoman-Regular.otf';
+    my $text = 'Hell€!';
+    # -- functional interface --
+    my HarfBuzz::Shaper $shaper .= new: :font{:$file}, :buf{:$text};
+    $glyphs = cairo-glyphs($shaper);
+    # -- OO interface --
+    my HarfBuzz::Shaper::Cairo $shaper2 .= new: :font{:$file}, :buf{:$text};
+    $glyphs = $shaper2.cairo-glyphs;
+    # -- FreeType integration --
+    use Font::FreeType;
+    use Font::FreeType::Face;
+    use HarfBuzz::Font::FreeType;
+    my Font::FreeType::Face $ft-face = Font::FreeType.face: $file;
+    my HarfBuzz::Font::FreeType() $font = %( :$ft-face );
+    my HarfBuzz::Shaper::Cairo $shaper3 .= new: :$font, :buf{:$text};
+    $glyphs = $shaper3.cairo-glyphs;
+
+=head3 Description
+
+This module compiles a set of shaped glyphs into a Cairo::Glyphs object; suitable for use by the Cairo::Context `show_glyphs()` and `glyph_path()` methods.
+
+Please see the `examples/` folder, for a full working example.
+
+=head2 Methods
+=end pod
+
 use Cairo;
 #| Return a set of Cairo compatible shaped glyphs
-method cairo-glyphs(HarfBuzz::Shaper:D $shaper = self: Numeric :x($x0) = 0e0, Numeric :y($y0) = 0e0, |c) is export(:cairo-glyphs) {
+method cairo-glyphs(HarfBuzz::Shaper:D $shaper = self: Numeric :x($x0) = 0e0, Numeric :y($y0) = 0e0, |c --> Cairo::Glyphs) is export(:cairo-glyphs) {
     my Cairo::Glyphs $cairo-glyphs .= new: :elems($shaper.buf.length);
     my Cairo::cairo_glyph_t $cairo-glyph;
     my int $i = 0;
