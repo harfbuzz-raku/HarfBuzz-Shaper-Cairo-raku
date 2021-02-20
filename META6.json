@@ -8,7 +8,7 @@
   ],
   "depends": [
     "HarfBuzz:ver<0.0.5+>",
-    "HarfBuzz::Font::FreeType",
+    "HarfBuzz::Font::FreeType:ver<0.0.5+>",
     "Cairo:ver<0.2.7+>"
   ],
   "description": "Cairo integeration for the HarfBuzz font shaping library",
