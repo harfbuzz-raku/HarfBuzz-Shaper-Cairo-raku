@@ -1,37 +1,55 @@
-## Welcome to GitHub Pages
+[[Raku HarfBuzz Project]](https://harfbuzz-raku.github.io)
+ / [[HarfBuzz-Shaper-Cairo Module]](https://harfbuzz-raku.github.io/HarfBuzz-Shaper-Cairo-raku)
 
-You can use the [editor on GitHub](https://github.com/harfbuzz-raku/HarfBuzz-Shaper-Cairo-raku/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+class HarfBuzz::Shaper::Cairo
+-----------------------------
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+HarfBuzz / Cairo shaping integration
 
-### Markdown
+Synopsis
+--------
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+    use HarfBuzz::Shaper::Cairo :&cairo-glyphs;
+    use HarfBuzz::Shaper;
+    use Cairo;
+    my Cairo::Glyphs $glyphs;
+    my $file = 't/fonts/NimbusRoman-Regular.otf';
+    my $text = 'Hell€!';
+    # -- functional interface --
+    my HarfBuzz::Shaper $shaper .= new: :font{:$file}, :buf{:$text};
+    $glyphs = cairo-glyphs($shaper);
+    # -- OO interface --
+    my HarfBuzz::Shaper::Cairo $shaper2 .= new: :font{:$file}, :buf{:$text};
+    $glyphs = $shaper2.cairo-glyphs;
+    # -- FreeType integration --
+    use Font::FreeType;
+    use Font::FreeType::Face;
+    use HarfBuzz::Font::FreeType;
+    my Font::FreeType::Face $ft-face = Font::FreeType.face: $file;
+    my HarfBuzz::Font::FreeType() $font = %( :$ft-face );
+    my HarfBuzz::Shaper::Cairo $shaper3 .= new: :$font, :buf{:$text};
+    $glyphs = $shaper3.cairo-glyphs;
 
-```markdown
-Syntax highlighted code block
+### Description
 
-# Header 1
-## Header 2
-### Header 3
+This module compiles a set of shaped glyphs into a Cairo::Glyphs object; suitable for use by the Cairo::Context `show_glyphs()` and `glyph_path()` methods.
 
-- Bulleted
-- List
+Please see the `examples/` folder, for a full working example.
 
-1. Numbered
-2. List
+Methods
+-------
 
-**Bold** and _Italic_ and `Code` text
+### method cairo-glyphs
 
-[Link](url) and ![Image](src)
+```perl6
+method cairo-glyphs(
+    Numeric :x($x0) = 0e0,
+    Numeric :y($y0) = 0e0,
+    |c
+) returns Cairo::Glyphs
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Return a set of Cairo compatible shaped glyphs
 
-### Jekyll Themes
+The returned object is typically passed to either the Cairo::Context show_glyphs() or glyph_path() methods
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/harfbuzz-raku/HarfBuzz-Shaper-Cairo-raku/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
