@@ -1,3 +1,6 @@
+[[Raku HarfBuzz Project]](https://harfbuzz-raku.github.io)
+ / [[HarfBuzz-Shaper-Cairo Module]](https://harfbuzz-raku.github.io/HarfBuzz-Shaper-Cairo-raku)
+
 class HarfBuzz::Shaper::Cairo
 -----------------------------
 
