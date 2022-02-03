@@ -2,6 +2,9 @@ Revision history for HarfBuzz-Shaper-Cairo
 
 {{$NEXT}}
 
+0.0.3  2022-02-04T06:21:54+13:00
+    - Fix name in META6.json
+
 0.0.2  2022-02-04T06:16:50+13:00
     - Add class HarfBuzz::Font::Cairo
 

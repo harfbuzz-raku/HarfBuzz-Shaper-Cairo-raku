@@ -13,7 +13,7 @@
   ],
   "description": "Cairo integeration for the HarfBuzz font shaping library",
   "license": "Artistic-2.0",
-  "name": "HarfBuzz::Font::Cairo",
+  "name": "HarfBuzz::Shaper::Cairo",
   "perl": "6.d",
   "provides": {
     "HarfBuzz::Font::Cairo": "lib/HarfBuzz/Font/Cairo.rakumod",
@@ -30,5 +30,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.2"
+  "version": "0.0.3"
 }
