@@ -15,7 +15,8 @@ my Font::FreeType $freetype .= new;
 
 multi submethod TWEAK(Font::FreeType::Face:D :$ft-face!, *%o) {
     $!cairo-font .= create($ft-face.raw, :free-type);
-    $!cairo-font.face.reference;
+ ## needs Cairo 0.2.8+
+ ##   $!cairo-font.face.reference;
     $!shaping-font = %( :$ft-face, %o );
 }
 
@@ -31,5 +32,5 @@ method shaper(HarfBuzz::Buffer() $buf) {
 }
 
 submethod DESTROY {
-    $!cairo-font.face.destroy;
+##    $!cairo-font.face.destroy;
 }
