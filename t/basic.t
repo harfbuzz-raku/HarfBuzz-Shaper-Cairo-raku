@@ -1,4 +1,5 @@
 use HarfBuzz;
+use HarfBuzz::Font::Cairo;
 use HarfBuzz::Shaper::Cairo :&cairo-glyphs;
 use HarfBuzz::Font;
 use HarfBuzz::Buffer;
@@ -15,7 +16,8 @@ unless $version >= v1.6.0 {
 my $file = 't/fonts/NimbusRoman-Regular.otf';
 my $text = 'Hell€!';
 my @scale = 1000;
-my HarfBuzz::Shaper::Cairo $shaper .= new: :font{:$file, :size(16)}, :buf{:$text, :language<epo>, };
+my HarfBuzz::Font::Cairo $font .= new: :$file, :size(16);
+my HarfBuzz::Shaper::Cairo $shaper = $font.shaper: {:$text, :language<epo>, };
 
 for $shaper.cairo-glyphs, cairo-glyphs($shaper) -> $glyphs {
     is $glyphs.elems, $text.chars;

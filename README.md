@@ -22,12 +22,9 @@ Synopsis
     my HarfBuzz::Shaper::Cairo $shaper2 .= new: :font{:$file}, :buf{:$text};
     $glyphs = $shaper2.cairo-glyphs;
     # -- FreeType integration --
-    use Font::FreeType;
-    use Font::FreeType::Face;
-    use HarfBuzz::Font::FreeType;
-    my Font::FreeType::Face $ft-face = Font::FreeType.face: $file;
-    my HarfBuzz::Font::FreeType() $font = %( :$ft-face );
-    my HarfBuzz::Shaper::Cairo $shaper3 .= new: :$font, :buf{:$text};
+    use HarfBuzz::Font::Cairo;
+    my HarfBuzz::Font::Cairo $font .= new: :$file'
+    my HarfBuzz::Shaper::Cairo $shaper3 = $font.shaper: {:$text};
     $glyphs = $shaper3.cairo-glyphs;
 
 ### Description

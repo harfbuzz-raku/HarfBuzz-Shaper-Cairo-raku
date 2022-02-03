@@ -16,7 +16,8 @@
   "name": "HarfBuzz::Shaper::Cairo",
   "perl": "6.d",
   "provides": {
-    "HarfBuzz::Shaper::Cairo": "lib/HarfBuzz/Shaper/Cairo.rakumod"
+    "HarfBuzz::Shaper::Cairo": "lib/HarfBuzz/Shaper/Cairo.rakumod",
+    "HarfBuzz::Font::Cairo": "lib/HarfBuzz/Font/Cairo.rakumod"
   },
   "raku": "6",
   "resources": [

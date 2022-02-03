@@ -23,10 +23,10 @@ unit class HarfBuzz::Shaper::Cairo:ver<0.0.1>
     # -- FreeType integration --
     use Font::FreeType;
     use Font::FreeType::Face;
-    use HarfBuzz::Font::FreeType;
+    use Harfbuzz::Shaper::Cairo::Font;
     my Font::FreeType::Face $ft-face = Font::FreeType.face: $file;
-    my HarfBuzz::Font::FreeType() $font = %( :$ft-face );
-    my HarfBuzz::Shaper::Cairo $shaper3 .= new: :$font, :buf{:$text};
+    my Harfbuzz::Shaper::Cairo::Font $font .= new: :$file;
+    my HarfBuzz::Shaper::Cairo $shaper3 .= $font.shaper: {:$text};
     $glyphs = $shaper3.cairo-glyphs;
 
 =head3 Description
