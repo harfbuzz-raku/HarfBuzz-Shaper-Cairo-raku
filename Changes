@@ -1,6 +1,8 @@
 Revision history for HarfBuzz-Shaper-Cairo
 
 {{$NEXT}}
+
+0.0.2  2022-02-04T06:16:50+13:00
     - Add class HarfBuzz::Font::Cairo
 
 0.0.1  2021-02-20T08:04:58+13:00

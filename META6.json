@@ -1,5 +1,5 @@
 {
-  "auth": "github:pdf-raku",
+  "auth": "cpan:WARRINGD",
   "authors": [
     "David Warring"
   ],
@@ -13,11 +13,11 @@
   ],
   "description": "Cairo integeration for the HarfBuzz font shaping library",
   "license": "Artistic-2.0",
-  "name": "HarfBuzz::Shaper::Cairo",
+  "name": "HarfBuzz::Font::Cairo",
   "perl": "6.d",
   "provides": {
-    "HarfBuzz::Shaper::Cairo": "lib/HarfBuzz/Shaper/Cairo.rakumod",
-    "HarfBuzz::Font::Cairo": "lib/HarfBuzz/Font/Cairo.rakumod"
+    "HarfBuzz::Font::Cairo": "lib/HarfBuzz/Font/Cairo.rakumod",
+    "HarfBuzz::Shaper::Cairo": "lib/HarfBuzz/Shaper/Cairo.rakumod"
   },
   "raku": "6",
   "resources": [
@@ -30,5 +30,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
