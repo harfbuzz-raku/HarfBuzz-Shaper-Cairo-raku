@@ -7,7 +7,7 @@
     "LibraryMake"
   ],
   "depends": [
-    "HarfBuzz:ver<0.0.5+>",
+    "HarfBuzz:ver<0.0.10+>",
     "HarfBuzz::Font::FreeType:ver<0.0.5+>",
     "Cairo:ver<0.2.7+>"
   ],

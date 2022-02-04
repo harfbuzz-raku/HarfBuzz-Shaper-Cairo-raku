@@ -7,9 +7,17 @@ use HarfBuzz::Feature;
 use HarfBuzz::Shaper::Cairo;
 use HarfBuzz::Font::Cairo;
 use HarfBuzz::Glyph;
+use HarfBuzz::Raw::Defs :hb-glyph-flag;
 use Cairo;
 
-sub MAIN(Str $font-file, Str $text = 'Hello from HarfBuzz', :features(@feats), :$output = 'out.png', UInt :$font-size = 36, Numeric :$margin = $font-size / 2) {
+sub MAIN(Str $font-file,
+         Str $text = 'Hello from HarfBuzz',
+         :features(@feats),
+         :$output = 'out.png',
+         UInt :$font-size = 36,
+         Numeric :$margin = $font-size / 2,
+         Bool :$flags,
+        ) {
     my HarfBuzz::Feature() @features = @feats;
     my HarfBuzz::Font::Cairo() $font = %( :file($font-file), :@features, :size($font-size) );
     my HarfBuzz::Shaper::Cairo $shaper = $font.shaper: {:$text }
@@ -38,12 +46,27 @@ sub MAIN(Str $font-file, Str $text = 'Hello from HarfBuzz', :features(@feats), :
         $ctx.translate($font-size * .5, 0);
     }
 
-    my Cairo::Glyphs $glyphs = $shaper.cairo-glyphs;
-    for 0 ..^ $glyphs.elems {
-        my $glyph = $glyphs[$_];
+    my Cairo::Glyphs $cairo-glyphs = $shaper.cairo-glyphs;
+    for 0 ..^ $cairo-glyphs.elems {
+        my $glyph = $cairo-glyphs[$_];
         my $glyph-name = $shaper.glyph-name($glyph.index);
-        note sprintf("glyph='%s'	position=(%g,%g)", $glyph-name, $glyph.x, $glyph.y);
+        my $txt = sprintf("glyph='%s'	position=(%g,%g)", $glyph-name, $glyph.x, $glyph.y);
+        if $flags {
+            given @glyphs[$_].&dump-flags() {
+                $txt ~=' flags=' ~ $_ if .so;
+            }
+        }
+        note $txt;
     }
-    $ctx.show_glyphs($glyphs);
+    $ctx.show_glyphs($cairo-glyphs);
     $surface.write_png($output);
+}
+
+sub dump-flags(HarfBuzz::Glyph $glyph) {
+    my @flags;
+    given $glyph.flags {
+        @flags.push: '!break'  if $_ +& HB_GLYPH_FLAG_UNSAFE_TO_BREAK;
+        @flags.push: '!concat' if $_ +& HB_GLYPH_FLAG_UNSAFE_TO_CONCAT;
+        @flags.join: ',';
+    }
 }
