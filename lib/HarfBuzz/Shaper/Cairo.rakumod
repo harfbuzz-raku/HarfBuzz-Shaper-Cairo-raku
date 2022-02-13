@@ -40,7 +40,12 @@ Please see the `examples/` folder, for a full working example.
 
 use Cairo;
 #| Return a set of Cairo compatible shaped glyphs
-method cairo-glyphs(HarfBuzz::Shaper:D $shaper = self: Numeric :x($x0) = 0e0, Numeric :y($y0) = 0e0, |c --> Cairo::Glyphs) is export(:cairo-glyphs) {
+method cairo-glyphs(
+    HarfBuzz::Shaper:D $shaper = self:
+    Numeric :x($x0) = 0e0,
+    Numeric :y($y0) = 0e0,
+    |c --> Cairo::Glyphs
+) is export(:cairo-glyphs) {
     my Cairo::Glyphs $cairo-glyphs .= new: :elems($shaper.buf.length);
     my Cairo::cairo_glyph_t $cairo-glyph;
     my int $i = 0;
@@ -49,7 +54,7 @@ method cairo-glyphs(HarfBuzz::Shaper:D $shaper = self: Numeric :x($x0) = 0e0, Nu
 
     for $shaper.shape(|c) -> $glyph {
         $cairo-glyph = $cairo-glyphs[$i++];
-        $cairo-glyph.index = $glyph.codepoint;
+        $cairo-glyph.index = $glyph.gid;
         $cairo-glyph.x = $x + $glyph.x-offset;
         $cairo-glyph.y = $y + $glyph.y-offset;
         $x += $glyph.x-advance;

@@ -1,6 +1,7 @@
 Revision history for HarfBuzz-Shaper-Cairo
 
 {{$NEXT}}
+    - Adjust to HarfBuzz 0.0.11+ deprecations
 
 0.0.3  2022-02-04T06:21:54+13:00
     - Fix name in META6.json
