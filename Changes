@@ -1,6 +1,8 @@
 Revision history for HarfBuzz-Shaper-Cairo
 
 {{$NEXT}}
+
+0.0.4  2022-02-14T14:10:08+13:00
     - Adjust to HarfBuzz 0.0.11+ deprecations
 
 0.0.3  2022-02-04T06:21:54+13:00
