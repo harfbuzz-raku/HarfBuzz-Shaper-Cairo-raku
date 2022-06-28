@@ -41,7 +41,7 @@ Please see the `examples/` folder, for a full working example.
 use Cairo;
 #| Return a set of Cairo compatible shaped glyphs
 method cairo-glyphs(
-    HarfBuzz::Shaper:D $shaper = self:
+    HarfBuzz::Shaper:D $shaper:
     Numeric :x($x0) = 0e0,
     Numeric :y($y0) = 0e0,
     |c --> Cairo::Glyphs
@@ -53,12 +53,13 @@ method cairo-glyphs(
     my Num $y = $y0.Num;
 
     for $shaper.shape(|c) -> $glyph {
-        $cairo-glyph = $cairo-glyphs[$i++];
-        $cairo-glyph.index = $glyph.gid;
-        $cairo-glyph.x = $x + $glyph.x-offset;
-        $cairo-glyph.y = $y + $glyph.y-offset;
-        $x += $glyph.x-advance;
-        $y += $glyph.y-advance;
+        given $cairo-glyphs[$i++] {
+            .index = $glyph.gid;
+            .x = $x + $glyph.x-offset;
+            .y = $y + $glyph.y-offset;
+            $x += $glyph.x-advance;
+            $y += $glyph.y-advance;
+        }
     }
 
     $cairo-glyphs.x-advance = $x - $x0;
