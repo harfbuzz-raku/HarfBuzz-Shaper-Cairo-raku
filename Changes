@@ -1,6 +1,8 @@
 Revision history for HarfBuzz-Shaper-Cairo
 
 {{$NEXT}}
+
+0.0.5  2022-06-29T11:04:01+12:00
     - Upload to zef ecosystem
 
 0.0.4  2022-02-14T14:10:08+13:00
