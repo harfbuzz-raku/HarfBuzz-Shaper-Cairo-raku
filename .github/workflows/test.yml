@@ -29,10 +29,12 @@ jobs:
         if: contains(matrix.os, 'ubuntu')
         run: |
           sudo apt-get install -y libharfbuzz-dev
+          sudo apt-get install -y libfreetype6-dev
       - name: macOS specific setup
         if: contains(matrix.os, 'macOS')
         run: |
           brew update
+          brew install freetype
           brew install harfbuzz
       - name: Install Dependencies
         run: |
