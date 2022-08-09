@@ -22,14 +22,14 @@ my HarfBuzz::Shaper::Cairo $shaper = $font.shaper: {:$text, :language<epo>, };
 for $shaper.cairo-glyphs, cairo-glyphs($shaper) -> $glyphs {
     is $glyphs.elems, $text.chars;
     enum <index x y>;
-    my Array @expected = [41, 0, 0 ], [70, 11.55, 0], [77, 18.3, 0], [77, 22.75, 0], [347, 27.2, 0], [2, 35.2, 0];
+    my Array @expected = [41, 0, 0 ], [70, 11.6, 0], [77, 18.3, 0], [77, 22.7|22.8, 0], [347, 27.2, 0], [2, 35.2, 0];
 
     for 0 ..^ @expected {
         my Cairo::cairo_glyph_t:D $glyph = $glyphs[$_];
 
         is $glyph.index, @expected[$_][index], "glyph $_ index";
-        is $glyph.x.round(.01), @expected[$_][x],  "glyph $_ x";
-        is $glyph.y.round(.01), @expected[$_][y],  "glyph $_ y";
+        is $glyph.x.round(.1), @expected[$_][x],  "glyph $_ x";
+        is $glyph.y.round(.1), @expected[$_][y],  "glyph $_ y";
     }
 
     is-approx $glyphs.x-advance.round(0.01), 40.53, :abs-tol(0.02);

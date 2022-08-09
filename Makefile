@@ -9,6 +9,7 @@ docs/index.md : README.md
 	cp $< $@
 
 README.md : lib/HarfBuzz/Shaper/Cairo.rakumod
+	@raku -I . -c $<
 	raku -I . --doc=Markdown $< \
 	| TRAIL=HarfBuzz/Shaper/Cairo raku -p -n  $(DocLinker) \
         > $@
@@ -16,7 +17,10 @@ README.md : lib/HarfBuzz/Shaper/Cairo.rakumod
 $(DocLinker) :
 	(cd .. && git clone $(DocRepo) $(DocProj))
 
-doc : $(DocLinker) README.md docs/index.md
+Pod-To-Markdown-installed :
+	@raku -M Pod::To::Markdown -c
+
+doc : $(DocLinker) Pod-To-Markdown-installed README.md docs/index.md
 
 test : all
 	@prove6 -I . t

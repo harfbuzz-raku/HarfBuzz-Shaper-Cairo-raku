@@ -24,10 +24,10 @@ Synopsis
     # -- FreeType integration --
     use Font::FreeType;
     use Font::FreeType::Face;
-    use HarfBuzz::Font::FreeType;
+    use Harfbuzz::Shaper::Cairo::Font;
     my Font::FreeType::Face $ft-face = Font::FreeType.face: $file;
-    my HarfBuzz::Font::FreeType() $font = %( :$ft-face );
-    my HarfBuzz::Shaper::Cairo $shaper3 .= new: :$font, :buf{:$text};
+    my Harfbuzz::Shaper::Cairo::Font $font .= new: :$file;
+    my HarfBuzz::Shaper::Cairo $shaper3 .= $font.shaper: {:$text};
     $glyphs = $shaper3.cairo-glyphs;
 
 ### Description
@@ -41,7 +41,7 @@ Methods
 
 ### method cairo-glyphs
 
-```perl6
+```raku
 method cairo-glyphs(
     Numeric :x($x0) = 0e0,
     Numeric :y($y0) = 0e0,

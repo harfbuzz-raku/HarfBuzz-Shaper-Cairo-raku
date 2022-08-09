@@ -1,6 +1,7 @@
 Revision history for HarfBuzz-Shaper-Cairo
 
 {{$NEXT}}
+    - Tweak tests for HarfBuzz::Font::FreeType v0.0.10
 
 0.0.5  2022-06-29T11:04:01+12:00
     - Upload to zef ecosystem
