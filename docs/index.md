@@ -34,6 +34,8 @@ Synopsis
 
 This module compiles a set of shaped glyphs into a Cairo::Glyphs object; suitable for use by the Cairo::Context `show_glyphs()` and `glyph_path()` methods.
 
+This module also includes the [HarfBuzz::Font::Cairo](https://harfbuzz-raku.github.io/HarfBuzz-Shaper-Cairo-raku/HarfBuzz/Font/Cairo) class.
+
 Please see the `examples/` folder, for a full working example.
 
 Methods

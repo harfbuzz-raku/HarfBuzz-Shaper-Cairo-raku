@@ -9,7 +9,7 @@
   "depends": [
     "HarfBuzz:ver<0.0.11+>",
     "HarfBuzz::Font::FreeType:ver<0.0.5+>",
-    "Cairo:ver<0.2.7+>"
+    "Cairo:ver<0.2.8+>"
   ],
   "description": "Cairo integeration for the HarfBuzz font shaping library",
   "license": "Artistic-2.0",

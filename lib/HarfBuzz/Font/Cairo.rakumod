@@ -15,8 +15,7 @@ my Font::FreeType $freetype .= new;
 
 multi submethod TWEAK(Font::FreeType::Face:D :$ft-face!, *%o) {
     $!cairo-font .= create($ft-face.raw, :free-type);
- ## needs Cairo 0.2.8+
- ##   $!cairo-font.face.reference;
+    $!cairo-font.face.reference;
     $!shaping-font = %( :$ft-face, %o );
 }
 
@@ -32,5 +31,21 @@ method shaper(HarfBuzz::Buffer() $buf) {
 }
 
 submethod DESTROY {
-##    $!cairo-font.face.destroy;
+    $!cairo-font.face.destroy;
 }
+
+=begin pod
+=head2 Methods
+=head3 new
+=begin code :lang<raku>
+    multi method new(Font::FreeType::Face:D :$ft-face!, *%opts)
+    multi method new(Str:D :$file!, *%opts)
+=end code
+Creates an object from a L<FreeType::face> object, or a file to be loaded as a  L<FreeType::face> object.
+
+=head3 shaping-font
+=for code :lang<raku>
+method shaping-font returns HarfBuzz::Font::FreeType
+
+Returns the built L<HarfBuzz::Font::FreeType> object.
+=end pod

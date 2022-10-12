@@ -33,6 +33,8 @@ unit class HarfBuzz::Shaper::Cairo:ver<0.0.6>
 
 This module compiles a set of shaped glyphs into a Cairo::Glyphs object; suitable for use by the Cairo::Context `show_glyphs()` and `glyph_path()` methods.
 
+This module also includes the L<HarfBuzz::Font::Cairo> class.
+
 Please see the `examples/` folder, for a full working example.
 
 =head2 Methods
