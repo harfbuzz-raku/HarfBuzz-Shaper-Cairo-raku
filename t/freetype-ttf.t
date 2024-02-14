@@ -1,3 +1,4 @@
+use HarfBuzz;
 use HarfBuzz::Shaper;
 use HarfBuzz::Font::FreeType;
 use HarfBuzz::Raw::Defs :hb-script, :hb-direction;
