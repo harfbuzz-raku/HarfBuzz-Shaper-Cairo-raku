@@ -1,7 +1,7 @@
 use HarfBuzz::Shaper;
 
 #| HarfBuzz / Cairo shaping integration
-unit class HarfBuzz::Shaper::Cairo:ver<0.0.6>
+unit class HarfBuzz::Shaper::Cairo:ver<0.0.7>
     is HarfBuzz::Shaper;
 
 =begin pod
